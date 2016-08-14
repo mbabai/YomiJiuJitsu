@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{{ static_url("canvas.css") }}">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="{{ static_url("canvas.js") }}"></script>
+</head>	
+<body>
+	<div id="main">
+		<div id="myEnergyBarHolder">
+			<h1 class="energyInfo"></h1>
+			<div class="energyBarHolder">
+				<div class="energyCase"></div>
+				<div class="caseEmpty"></div>
+				<div class="caseFull"></div>
+				<div class="energySlider"></div>
+			</div>
+		</div>
+		<div id="opponentEnergyBarHolder">
+			<h1 class="energyInfo"></h1>
+			<div class="energyBarHolder">
+				<div class="energyCase"></div>
+				<div class="caseEmpty"></div>
+				<div class="caseFull"></div>
+			</div>
+		</div>
+		<img id="backgroundImage" src="static/images/fightingBackground.png">
+		<canvas id="canvas0" width="500" height="300"></canvas>
+		<canvas id="canvas1" width="500" height="300"></canvas>
+		<button style="left:225px;" onClick="bothShoot(20)">Shoot!!</button>
+		<button style="left:550px;" onClick="resetAll()">Reset Game</button>
+		<button style="left:600px;" onClick="checkVictory()">Victory?</button>
+		<button style="left:660px;" onClick="herosAttack()">Attack!</button>
+		
+	</div>
+</body>
+</html>

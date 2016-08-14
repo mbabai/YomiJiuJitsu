@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+
+{% block header %}
+	<script src="http://jaysalvat.github.io/buzz/releases/latest/buzz.min.js"></script>
+	<script type="text/javascript" src="{{ static_url("main.js") }}"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="{{ static_url("canvas.js") }}"></script>
+	<title>Play</title>
+{% end %}
+{% block body %}
+<img id="soundButton" value="On" src ="{{ static_url("images/soundButton.png") }}" onClick="muteToggle();">
+<h1>Welcome to Subai-rena, {{user["username"]}}!</h1>
+<h2 id="action"></h2>
+
+<div id="main">
+	<div id="myEnergyBarHolder">
+		<div class="energyBarHolder">
+			<div class="energyCase"></div>
+			<div class="caseEmpty"></div>
+			<div class="caseFull"></div>
+			<div class="energySlider"></div>
+			<h1 class="energyInfo"></h1>
+		</div>
+	</div>
+	<div id="opponentEnergyBarHolder">
+		<div class="energyBarHolder">
+			<div class="energyCase"></div>
+			<div class="caseEmpty"></div>
+			<div class="caseFull"></div>
+			<h1 class="energyInfo"></h1>
+		</div>
+	</div>
+	<img id="backgroundImage" src="static/images/fightingBackground.png">
+	<canvas id="canvas0" width="500" height="300"></canvas>
+	<canvas id="canvas1" width="500" height="300"></canvas>
+	<div id="outcomes" onClick="$('#actionInput').focus();">
+		<p>Welcome to the Yomi Jiu-Jitsu Battle Arena, hosted by Subai! On the right you'll see players who are also in the arena. Challenge players whose names are highlighted in red by clicking the name. Let other players challenge you by clicking "open to play" above the list.</p>
+		<p>No one around? Play one of the robots! If you don't know how to play, just check out "How to Play" under "About" in the top right corner of your page.</p>
+		<p>Good luck, and happy battling!</p>
+	</div>
+	<div id="hoverInfo">Hover above for game history.</div>
+	<button class="button inBattleFormItem" id="submitAction" onClick="submitAction()">Shoot!</button>
+</div>
+
+
+
+<div id="playersListHolder">
+	<div id="playersList"></div>
+	<button class="menuItem playOption" id="createGame" onClick="createDeleteGame()">Open to Play</button>
+	<button class="menuItem playOption" id="playRando" onClick="playBot('RandoBot')">Play RandoBot!</button>
+	<button class="menuItem playOption" id="playSmart" onClick="playBot('SmartBot')">Play SmartBot!</button>
+	<button class="menuItem playOption" id="playOmni" onClick="playBot('OmniBot')">Play OmniBot!</button>	
+		
+</div>
+
+<div id="chatBoxHolder">
+	<div id="chatBox" onClick="$('#chatInput').focus();"></div>
+	<form id="chatForm">
+	<input class="" id="chatInput" autocomplete="off" type="text">
+	</form>
+	<button class="button2" id="chatSubmit" onClick="submitChat()">Send</button>
+</div>
+
+{% end %}
+
+

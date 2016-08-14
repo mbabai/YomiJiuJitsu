@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+
+{% block header %}
+	<title>Account</title>
+{% end %}
+{% block body %}
+<h1>Welcome to your account, {{escape(user["username"])}}!</h1>
+
+
+<div class="infoBox" id="accountInfoBox">
+	<p>In this portion of the site, you can look over you past play history and statistics. See who you've played, learn from your mistakes, or just reminisce on old times.</p>
+</div>
+<div class="infoBox" id="accountStats">
+	<h3>Rank: {{playerStats["rank"]}}</h3>
+   	<p><b>Wins: {{playerStats["wins"]}}</b></p>
+	<p><strong>Losses: {{playerStats["losses"]}}</strong></p>
+	<p style="color:gray;">Draws: {{playerStats["draws"]}}</p>
+	<p>Total: {{playerStats["total"]}}</p>
+</div>
+
+<div class="infoBox" id="gameHistory">
+	<h1>Game History</h1>
+	<ul>
+		{% for HI in historyList %}
+		<li>
+	      	{% module Template("historyItem.html", 
+				timestamp = HI['timestamp'],
+				oppName = HI['oppName'],
+				myR1 = HI['myR1'],
+				myR2 = HI['myR2'],
+				myR3 = HI['myR3'],
+				oppR1 = HI['oppR1'],
+				oppR2 = HI['oppR2'],
+				oppR3 = HI['oppR3'],
+				myOut = HI['myOut'],
+				oppOut = HI['oppOut']
+			) %}
+	    </li>
+	    {% end %}
+	</ul>
+</div>
+{% end %}

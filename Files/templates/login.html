@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block header %}
+<title>Login</title>
+{% end %}
+{% block body %}
+<h1>Login to Subai!</h1>
+<h3 class="errorMessage">{{ error }}</h3>
+<form action ="/auth/login" method="POST">
+	{% raw xsrf_form_html() %}
+	<p>Username:<input type="text" name="username"/></p>
+	<p>Password:<input type="password" name="password"/></p>
+	<input class="button" type="submit" value = "Log In"/>
+</form>
+
+<h3>Don't have a Subai Account?</h3>	
+<a class="button" href="/auth/signup">Sign up!</a>	
+
+
+{% end %}

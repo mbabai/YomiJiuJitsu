@@ -1,0 +1,29 @@
+
+
+
+
+<div class="historyItem">
+	<table>
+		<caption>Played on {{timestamp.month}}/{{timestamp.day}}/{{timestamp.year}} at {{timestamp.hour}}:{{str(timestamp.minute).zfill(2)}}:{{str(timestamp.second).zfill(2)}} </caption>
+		<th>
+			{% if myOut == 1 %}<b>----V----</b>
+			{% elif oppOut == 1 %}<strong>----V----</strong>
+			{% else %}<p>-D-</p>{% end %}
+		</th>
+		<th>R1</th>
+		<th>R2</th>
+		<th>R3</th>
+		<tr>
+			<td><b>You</b></td>
+			<td>{{myR1}}</td>
+			<td>{{myR2}}</td>
+			<td>{{myR3}}</td>
+		</tr>
+		<tr>
+			<td><strong>{{escape(oppName)}}<strong></td>
+			<td>{{oppR1}}</td>
+			<td>{{oppR2}}</td>
+			<td>{{oppR3}}</td>
+		</tr>
+	</table>
+</div>	

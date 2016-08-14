@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{{ static_url("main.css") }}">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ static_url("menu.js") }}"></script>
+	{% block header %}{% end %}
+</head>
+<body>
+	<div id="header">
+		<span class="menuItem">
+			<p class="menuWord">
+				<a id="goHome" class="menuLink" href = "/">Home</a>
+			</p>
+	    </span>
+	    <span class="menuItem">
+			<p class="menuWord">
+				<a id="goPlay" class="menuLink" href = "/play">Play</a>
+			</p>
+	    </span>
+		<span class="menuItem">
+			<p class="menuWord">
+				<a id="account" class="menuLink" href = "/account">Account</a>
+            </p>
+            <div class="dropItem">
+				<p class="menuWord">
+					<a id="goLogout" class="menuLink" href = "/auth/logout">Log In/Out</a>
+				</p>
+				<div class="dropItem">
+					<p class="menuWord">
+						<a id="goSignup" class="menuLink" href = "/auth/signup">Sign Up</a>
+					</p>
+				</div>
+           	</div>
+	    </span>
+		<span class="menuItem">
+			<p class="menuWord">
+				<a id="about" class="menuLink" href = "/aboutus">About</a>
+            </p>
+			<div class="dropItem">
+				<p class="menuWord">
+					<a id="howToPlay" class="menuLink" href = "/howtoplay">How to Play</a>
+				</p>
+				<div class="dropItem">
+					<p class="menuWord">
+						<a id="aboutUs" class="menuLink" href = "/aboutus">About Us</a>
+					</p>
+				</div>
+           	</div>
+	    </span>
+	</div>
+	<div style="margin-left:30px;" id="content">
+	{% block body %}{% end %}
+	{% block gameplay %}{% end %}
+	</div>
+	<img style="filter: brightness(50%);width:1200px;position:fixed;left:-1%;z-index:-5;top:0%;" src="/static/images/ShadowProjection-large.jpg"/>
+</body>
+</html>
