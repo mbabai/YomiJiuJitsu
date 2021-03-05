@@ -18,8 +18,7 @@ var messageSound = new buzz.sound("static/sounds/newMessage", {
     loop: false
 });
 
-$(document).ready(function(){
-    
+$(document).ready(function(){    
     worker.onmessage = function(e) {
         data = e.data
         switch(data[0]){
@@ -67,7 +66,7 @@ $(document).ready(function(){
         console.log("Connection open");
     };
     
-    WebSocket.onerror = function(evt){
+    ;.onerror = function(evt){
         console.log("WebSockets has encountered an error");
     };
     

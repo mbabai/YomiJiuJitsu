@@ -14,7 +14,7 @@ from Alchemy import *
 from uuid import uuid4
 import time
 from datetime import datetime
-import thread
+import _thread
 
 from tornado import gen
 from tornado.options import define, options
@@ -184,7 +184,7 @@ class GameHandler(tornado.websocket.WebSocketHandler):
         updateOpenGames(self)
         player = socketToPlayers[self]['username']
         printString = "("+str(datetime.now())+")::"+player+" has entered the game room."
-        print printString
+        print(printString)
 
     def on_close(self):
         user = unJSON(self.get_secure_cookie("user"))['claimed_id'][41:]
@@ -194,11 +194,11 @@ class GameHandler(tornado.websocket.WebSocketHandler):
         leavingPlayer(user)
         deleteOpenGame(user)
         printString = "("+str(datetime.now())+")::"+player+" has left the game room."
-        print printString
+        print(printString)
         
 
     def callback(self):
-        print "Echo Callback."
+        print("Echo Callback.")
 
     def on_message(self, message):
         """Playing against the computer:"""
@@ -396,7 +396,7 @@ class GameInputBuffer():
         elif player == self.p2: 
             self.p2Play = value
         else: 
-            print str(datetime.now()), "Input user error #001."
+            print(str(datetime.now()), "Input user error #001.")
             return False
     
     def checkReady(self):
@@ -508,7 +508,7 @@ class Game():
 
         updatePlayersInChatRoom()
         del games[self.id]
-        print "Ended Game",self.id 
+        print("Ended Game",self.id )
         return str(victor)
 
 
@@ -521,7 +521,7 @@ def startGame(p1,p2):
     global gamesIDnum
     gamesIDnum += 1
     printString = "("+str(datetime.now())+")::Starting game:"+ str(gamesIDnum)  
-    print printString
+    print(printString)
     gameString = "game" + str(gamesIDnum)
     games[gameString] = Game(gameString,p1,p2)
     return gamesIDnum
@@ -711,7 +711,7 @@ def heartbeat(threadName,interval):
         time.sleep(interval)
         now = int(time.time())
         currentWaitingOnPlayers = waitingOnPlayers.copy()
-        for player,waitInfo in currentWaitingOnPlayers.iteritems():
+        for player,waitInfo in currentWaitingOnPlayers.items():
             waitStartTime = waitInfo[1]
             waitGameID = waitInfo[0]
             global allottedWaitingTime
@@ -739,8 +739,8 @@ if __name__ == "__main__":
     http_server.listen(options.port)
     noBotMakeBot()
     printString = "("+str(datetime.now())+")::Server Online:"
-    print printString
-    thread.start_new_thread( heartbeat,("hearbeat", 1,))
+    print(printString)
+    _thread.start_new_thread( heartbeat,("hearbeat", 1,))
     tornado.ioloop.IOLoop.instance().start()
     
     

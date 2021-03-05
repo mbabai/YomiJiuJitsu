@@ -83,7 +83,7 @@ def saveUser(username,password,claimed_id=None):
     """Add a new user to the database."""
     passhash = make_hash(password)
     session.add(DBUser(username,passhash,claimed_id))
-    print "Adding new user."
+    print("Adding new user.")
     session.commit()
     
 def authenticate(usernameAttempt,passwordAttempt):
