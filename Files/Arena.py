@@ -174,11 +174,12 @@ class PlayHandler(BaseHandler):
 
 
 class GameHandler(tornado.websocket.WebSocketHandler):
-    @tornado.web.authenticated
-    def get(self):
-        self.redirect("/play")
-    
+    # def get(self):
+    #     self.redirect("/play")
+
+    # @tornado.web.authenticated
     def open(self):
+        print("OPENING WEBSOCKET")
         user = self.get_secure_cookie("user")
         newPlayer(user,self)
         updateOpenGames(self)
@@ -265,7 +266,7 @@ class RoboHandler():
             
     def thinkAndAct(self,gbuffer):
         """Let the action of the bot happen in another thread."""
-        thread.start_new_thread(self.BotAction,(gbuffer,))
+        _thread.start_new_thread(self.BotAction,(gbuffer,))
         
     def BotAction(self,gbuffer):
         """Doing actions in parallel."""
@@ -528,7 +529,7 @@ def startGame(p1,p2):
 
 def updateOpenGames(player):
     """Let a player who just joined know what games are open."""
-    for key, value in openGames.iteritems():
+    for key, value in openGames.items():
         idString = value.id[8:]
         mes = {"message":["newOpenGame",idString]}
         player.write_message(mes)
@@ -569,9 +570,9 @@ def leavingPlayer(player):
      
 def updatePlayersInChatRoom():
     """Send a message to all players that a new person has entered the game."""
-    for key, val in playersToSocket.iteritems():
+    for key, val in playersToSocket.items():
         playerList = []
-        for playerKey,playerVal in socketToPlayers.iteritems():
+        for playerKey,playerVal in socketToPlayers.items():
             if playerKey != val and playerVal['username'] not in botList:
                 userInfo = getUserInfo(playerVal['username'])
                 playerList.append(userInfo)

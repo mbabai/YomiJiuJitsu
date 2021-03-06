@@ -66,7 +66,7 @@ $(document).ready(function(){
         console.log("Connection open");
     };
     
-    ;.onerror = function(evt){
+    WebSocket.onerror = function(evt){
         console.log("WebSockets has encountered an error");
     };
     
